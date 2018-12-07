@@ -56,8 +56,8 @@ export const rootFolder = folder("root", [
            </br>
            Experience ------------------------  </br>
            * Co-founder, Quesly.com </br>
-           * Freelance work, contributed software engineering expertise in the development of websites, from requirements definition through successful deployment. Delighted customers with beautiful UIs.</br>
-           ** Much of my experience is through self-learning and personal projects. I taught myself computer science fundamentals - like data structures and algoritms - with the abundant resources online. Some of my personal projects include: Trello (kanban) service, Conway's Game of Life, personal websites, and an app to help people with allergies find food, as well as many 'tutorial' projects. Please check out my github for more information. (type 'cd links' then 'github'.</br>
+           * Freelance work, contributed software engineering expertise to build websited for clients. Communicated with clients to understand visions. Took responsibility for the full application, from design to deployment. </br>
+           ** Much of my experience is through self-learning and personal projects. I taught myself computer science fundamentals - like data structures and algoritms - with the abundant resources online. Some of my personal projects include: Trello (kanban) service, Conway's Game of Life, personal websites, and an app that helps people food allergies find restaurants. Please check out my github for more information. (type 'cd links' then 'github'.</br>
            `
          ),
          file("email", "hellonicolemayo@gmail.com")

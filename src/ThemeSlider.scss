@@ -1,4 +1,9 @@
 
+.toggle-theme {
+  display: flex;
+  flex-direction: row;
+}
+
 .theme-option-light {
   font-size: 12px;
   color: rgba(0,0,0,.3);
@@ -9,7 +14,7 @@
   color: rgba(255,255,255,.3)
 }
 
-.slider-container {
+.checkbox {
   height: 0;
 	width: 0;
   margin: 0;
@@ -52,11 +57,11 @@
   background-color: rgba(255,255,255,.2)
 }
 
-.slider-container:checked + label {
+.checkbox:checked + label {
 	background: rgba(255,255,255, .07);
 }
 
-.slider-container:checked + label:after {
+.checkbox:checked + label:after {
 	left: calc(100% - 2px);
 	transform: translateX(-100%);
 }

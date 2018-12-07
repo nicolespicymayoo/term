@@ -16,11 +16,12 @@
 }
 
 .toggle-theme-container {
-  position: absolute;
-  top: 30px;
-  right: 40px;
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: flex-end;
+  padding-top: 30px;
+  padding-right: 30px;
 }
 
 // centering
@@ -32,14 +33,12 @@ body {
 }
 
 .terminal-wrapper {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 1500px;
-  max-height: 450px;
 }
 
 .terminal {

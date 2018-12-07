@@ -232,12 +232,6 @@ const App: React.SFC = () => {
   }
 
   return <div className={theme == "dark" ? "App-dark" : "App"}>
-      {/* <button
-        className={theme == "dark" ? "theme-button-dark" : "theme-button"}
-        onClick={toggleTheme}
-      >
-        {theme == "dark" ? "lightmode" : "darkmode"}
-      </button> */}
       <div className="toggle-theme-container">
          {ThemeSlider(theme, toggleTheme)}
       </div>

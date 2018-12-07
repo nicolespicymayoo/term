@@ -8,6 +8,7 @@
     "@types/react": "^16.7.2",
     "@types/react-dom": "16.0.9",
     "node-sass": "^4.10.0",
+    "now": "^12.1.9",
     "react": "16.7.0-alpha",
     "react-dom": "16.7.0-alpha",
     "react-scripts": "^2.1.1",
