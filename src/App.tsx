@@ -218,7 +218,7 @@ const App: React.SFC = () => {
     }
   }
 
-  // formats the path fot the current input and all history items. prevents the root (first item) from displating in the stack path
+  // formats the path for the current input and all history items. prevents the root (first item) from displating in the stack path
   const renderPath = (stack: Array<Folder>) =>
     stack
       .slice(1)

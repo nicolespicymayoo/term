@@ -33,22 +33,22 @@ export type Folder = {
 export const rootFolder = folder("root", [
          file(
            "about",
-           "Hi! Welcome to my terminal. I'm Nicole, and I am a self-taught front end engineer. I quit the hospitality industry and learned how to code while starting a startup. I love to build beautiful, performant apps with clean design. Check out the tech I ♥ by typing ‘stack’."
+           "Hi! Welcome to my terminal. I'm Nicole, and I am a self-taught front-end engineer. I wanted to follow my interest in technology, so I quit the hospitality industry, co-founded a startup, and learned to code along the way. I love to build beautiful, performant applications with clean UIs. Check out the tech I ♥ by typing ‘stack’."
          ),
          file(
            "stack",
-           "TypeScript \xa0\xa0\xa0 React\xa0\xa0\xa0 JavaScript(ES6+)\xa0\xa0\xa0 Express\xa0\xa0\xa0 SCSS\xa0\xa0\xa0 Styled Components"
+           "TypeScript \xa0\xa0\xa0 React \xa0\xa0\xa0 JavaScript(ES6+)\xa0\xa0\xa0 Express \xa0\xa0\xa0 SCSS \xa0\xa0\xa0 Git \xa0\xa0\xa0 Styled Components \xa0\xa0\xa0PostgreSQL \xa0\xa0\xa0 RESTful APIs"
          ),
          folder("links", [
            link("github", "https://github.com/nicolespicymayoo"),
            link("linkedin", "https://www.linkedin.com/in/nicolemayo/"),
-           link("portfolio", "https://nmyo.co"),
+           link("resume pdf", "https://nmyo.co"),
            link("twitter", "https://twitter.com/spicyasianmayo?lang=en")
          ]),
          file(
            "resume",
            `Summary ------------------------------- </br>
-           Front end engineer with experience in the full lifecycle of building applications. Co-founded a web-based startup where I taught myself how to code. Proficient working across the stack and adopting new technologies quickly. Strong sense of design and UI. Knowledge of core data structures and algoritlms. Supportive and enthusiastic team player. Eager to learn new technologies. </br>
+           Front end engineer with experience in the full lifecycle of building applications. Co-founded a web-based startup where I taught myself how to code. Proficient working across the stack and adopting new technologies quickly. Strong sense of UI design. Knowledge of core data structures and algoritlms. Supportive and enthusiastic team player. Eager to learn new technologies. </br>
            
            </br>
            Technical Skills ------------------------  </br>
