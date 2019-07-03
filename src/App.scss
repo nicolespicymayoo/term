@@ -1,13 +1,14 @@
-@import url('./fonts.css');
+@import url("./fonts.css");
 
 .App {
   text-align: center;
   height: 100vh;
-  background-color: rgba(240, 242, 246, .8);
+  background-color: rgba(240, 242, 246, 0.8);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.2s;
 }
 
 .App-dark {
@@ -17,19 +18,19 @@
 
 .toggle-theme-container {
   display: flex;
-  width: 100%;
   max-width: 1200px;
   justify-content: flex-end;
-  padding-top: 30px;
-  padding-right: 30px;
+  position: absolute;
+  top: 30px;
+  right: 8%;
 }
 
 // centering
 body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .terminal-wrapper {
@@ -42,29 +43,33 @@ body {
 }
 
 .terminal {
-  height: 580px;
+  height: 460px;
   width: 600px;
-  border-radius: 10px;
-  background-color: rgb(40,42,54);
+  border-radius: 12px;
+  background-color: rgb(40, 42, 54);
   padding: 20px 25px;
   padding-top: 0;
-  box-shadow: rgba(23, 23, 24, 0.29) 10px 10px 44px, rgba(13, 13, 18, 0.2) 3px 5px 15px;
-  border: 1px solid rgba(223, 221, 240, 0.8);
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3),
+    0 -12px 40px -8px rgba(0, 0, 0, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
 }
 
 .terminal-dark {
   @extend .terminal;
-  border: 1px solid rgba(255,255,255,.3)
+  background-color: rgb(30, 32, 41);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 200;
 }
 
 .terminal-header {
-  color: rgba(255,255,255,.8);
+  color: rgba(255, 255, 255, 0.8);
   padding-bottom: 10px;
   padding-top: 15px;
-  letter-spacing: .4px;
+  letter-spacing: 0.4px;
   z-index: 9999;
-  background-color:rgba(40,42,54, 1);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .content-wrapper {
@@ -73,63 +78,160 @@ body {
   padding-bottom: 10px;
 }
 
-.terminal-content{
+.terminal-content {
   text-align: left;
   color: rgb(253, 139, 247);
-  font-family: 'SF Mono', 'PT Mono', 'Lucida Console', 'input mono', 'anonymous pro', source-code-pro, Menlo, Consolas, monospace;
-  font-size: .94rem;
+  font-family: "SF Mono", "PT Mono", "Lucida Console", "input mono", "anonymous pro", source-code-pro, Menlo, Consolas,
+    monospace;
+  font-size: 0.92rem;
   border-radius: 20px;
   padding: 10px 0;
-  width: 93%;
+  width: 98%;
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  padding-bottom: 10px;
-  // line-height: 1.2em;
 }
 
 .sticky {
   align-self: flex-end;
   width: 100%;
-  // bottom: 0px;
 }
 
 .input-form {
   text-align: left;
-  padding: 3px 0;
 }
 
 .stack {
   display: inline-block;
-  color: rgba(255,255,255,.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.user-input{
+.user-input {
   display: inline-block;
-  background-color: rgb(40,42,54);
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   outline: none;
-  font-size: .94em;
+  font-size: inherit;
   color: white;
-  font-family: 'SF Mono', 'PT Mono', 'Lucida Console', 'input mono', 'anonymous pro', source-code-pro, Menlo, Consolas, monospace;
-  padding-left: 10px;
+  color: rgb(253, 139, 247);
+  font-family: "SF Mono", "PT Mono", "Lucida Console", "input mono", "anonymous pro", source-code-pro, Menlo, Consolas,
+    monospace;
+  padding-left: 9px;
+  padding-top: 7px;
   width: 60%;
 }
 
+.history-item {
+  padding: 7px 0;
+}
+
 .history-input {
-  padding: 4px 0;
-  color: white;
+  color: rgb(253, 139, 247);
 }
 
 .history-output {
-  padding: 4px 0;
-  color: rgb(253, 139, 247);
+  color: white;
+  line-height: 1.34em;
+  padding-top: 4px;
+  font-size: 0.91rem;
+}
+
+.output-item {
+  display: inline-block;
+  padding-right: 10px;
+  color: white;
   line-height: 1.32em;
 }
 
-.output-item{
-  display: inline-block;
-  padding-right: 10px;
-  color: rgb(253, 139, 247);
-  line-height: 1.32em
+.help-container {
+  position: absolute;
+  right: 80px;
+  bottom: 20px;
+}
+
+.help-button {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.25);
+  padding: 2px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 100%;
+  float: right;
+  margin-right: 8px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.help-button-dark {
+  @extend .help-button;
+  color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.help-content {
+  z-index: 9999;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 14px -10px rgba(0, 0, 0, 0.2);
+  max-width: 160px;
+  margin-bottom: 15px;
+
+  ul {
+    list-style-type: none;
+    list-style: white;
+    text-align: left;
+    padding-left: 9px;
+    margin: 8px 0;
+  }
+  li {
+    padding: 3px 0;
+    line-height: 1.4em;
+  }
+
+  ul li::before {
+    content: "\2022";
+    color: rgb(253, 139, 247);
+    margin-right: 6px;
+  }
+  :after {
+    position: absolute;
+    bottom: 32px;
+    left: 75%;
+    content: "";
+    border-top: solid 10px #fff;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+  }
+  .monospace {
+    font-family: "SF Mono", "PT Mono", "Lucida Console", "input mono", "anonymous pro", monospace;
+    padding: 0 1px;
+  }
+}
+
+.help-content-hidden {
+  visibility: hidden;
+}
+
+.help-title {
+  color: rgba(0, 0, 0, 0.7);
+  padding-top: 3px;
+  font-size: 14px;
+}
+
+.help-text {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (max-width: 550px) {
+  .terminal {
+    width: 80%;
+    height: 320px;
+    font-size: 13px;
+  }
+  .terminal-content {
+    font-size: 13px;
+  }
 }

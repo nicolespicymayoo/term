@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { rootFolder, Folder } from "./FolderStructure"
-import { ThemeSlider } from './ThemeSlider'
+import { ThemeSlider } from "./ThemeSlider"
 import "./App.scss"
 
 enum KeyCodes {
@@ -15,6 +15,7 @@ type DivEl = HTMLDivElement | null
 const App: React.SFC = () => {
   const [userInput, setUserInput] = useState("")
   const [currStack, setCurrStack] = useState([rootFolder])
+  const [hoveringHelp, setHoveringHelp] = useState(false)
   const [history, setHistory] = useState<
     Array<{
       stack: Array<Folder>
@@ -32,40 +33,31 @@ const App: React.SFC = () => {
   let isInputSticky = false
   const [autocompleteArr, setAutocompleteArr] = useState<Array<string>>([])
   // initialTheme is a function so it is only run on the component's initial mount
-  let getInitialTheme: () => 'dark'|'light' = () => {
-    let stored = localStorage.getItem("theme") 
-    if(stored == 'light' || stored == 'dark'){
+  let getInitialTheme: () => "dark" | "light" = () => {
+    let stored = localStorage.getItem("theme")
+    if (stored == "light" || stored == "dark") {
       return stored
-    }else {
-      return 'light'
+    } else {
+      return "light"
     }
   }
-  const [theme, setTheme] = useState<'dark'|'light'>(getInitialTheme())
+  const [theme, setTheme] = useState<"dark" | "light">(getInitialTheme())
 
   if (scrollableHistoryEl.current) {
     scrollableHistoryEl.current.scrollTop = scrollableHistoryEl.current.scrollHeight
   }
 
-  useEffect(
-    () => {
-      setUserInput("")
-      setScrollIndex(history.length - 1)
-    },
-    [history]
-  )
+  useEffect(() => {
+    setUserInput("")
+    setScrollIndex(history.length - 1)
+  }, [history])
 
-  useEffect(
-    () => {
-      localStorage.setItem("theme", theme)
-    },
-    [theme]
-  )
+  useEffect(() => {
+    localStorage.setItem("theme", theme)
+  }, [theme])
 
   if (terminalEl.current && scrollableHistoryEl.current) {
-    if (
-      scrollableHistoryEl.current.scrollHeight >
-      terminalEl.current.clientHeight - 30
-    ) {
+    if (scrollableHistoryEl.current.scrollHeight > terminalEl.current.clientHeight - 30) {
       isInputSticky = true
     }
   }
@@ -90,9 +82,7 @@ const App: React.SFC = () => {
       return
     }
     if (command == "ls") {
-      let lsOutput_ = currFolder.children
-        .map(el => el.name)
-        .join("\xa0\xa0\xa0")
+      let lsOutput_ = currFolder.children.map(el => el.name).join("\xa0\xa0\xa0")
       let lsOutput = currFolder.children
         .map(el => {
           if (el.type == "folder") {
@@ -118,6 +108,8 @@ const App: React.SFC = () => {
         addNewHistoryItem(validFile.value)
       } else if (validFile.type == "link") {
         let link = validFile.link
+        console.log("link", link)
+        console.log(validFile.name)
         addNewHistoryItem(`Opening Nicole's ${validFile.name} in a new tab...`)
         setUserInputHidden(true)
         setTimeout(() => {
@@ -137,9 +129,7 @@ const App: React.SFC = () => {
   }
 
   const childrenNames = currFolder.children.map(el => el.name)
-  const childrenFolders = currFolder.children
-    .filter(child => child.type == "folder")
-    .map(el => el.name)
+  const childrenFolders = currFolder.children.filter(child => child.type == "folder").map(el => el.name)
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value)
 
@@ -231,10 +221,17 @@ const App: React.SFC = () => {
     } else setTheme("light")
   }
 
-  return <div className={theme == "dark" ? "App-dark" : "App"}>
-      <div className="toggle-theme-container">
-         {ThemeSlider(theme, toggleTheme)}
-      </div>
+  const hoverHelpOn = () => {
+    setHoveringHelp(true)
+  }
+
+  const hoverHelpOff = () => {
+    setHoveringHelp(false)
+  }
+
+  return (
+    <div className={theme == "dark" ? "App-dark" : "App"}>
+      <div className="toggle-theme-container">{ThemeSlider(theme, toggleTheme)}</div>
       <div className="terminal-wrapper">
         <div className={theme == "dark" ? "terminal-dark" : "terminal"} onClick={focusOnInputEl} ref={terminalEl}>
           <div className="terminal-header">Nicole's Terminal</div>
@@ -242,32 +239,64 @@ const App: React.SFC = () => {
             <div className={`terminal-content ${isInputSticky ? "sticky" : ""}`}>
               {history
                 .filter(item => item.cleared == false)
-                .map(item => <div className="historyItem">
+                .map(item => (
+                  <div className="history-item">
                     <div className="history-input">
                       <div>
-                        <div className="stack">
-                          ~
-                          {item.stack.length <= 1
-                            ? ""
-                            : "/" + renderPath(item.stack)}
-                          $
-                        </div> {item.userInput}
+                        <div className="stack">~{item.stack.length <= 1 ? "" : "/" + renderPath(item.stack)}$</div>{" "}
+                        {item.userInput}
                       </div>
                     </div>
-                    {item.output ? <div className="history-output" dangerouslySetInnerHTML={{ __html: item.output }} /> : null}
-                  </div>)}
+                    {item.output ? (
+                      <div className="history-output" dangerouslySetInnerHTML={{ __html: item.output }} />
+                    ) : null}
+                  </div>
+                ))}
               <form hidden={userInputHidden} onSubmit={handleSubmit} className="input-form">
-                <div className="stack">
-                  ~{currStack.length <= 1 ? "" : "/" + renderPath(currStack)}$
-                </div>
-                <input ref={inputEl} autoFocus className="user-input" onChange={handleInputChange} onKeyDown={checkUserScrollAndTab} value={userInput} />
+                <div className="stack">~{currStack.length <= 1 ? "" : "/" + renderPath(currStack)}$</div>
+                <input
+                  ref={inputEl}
+                  autoFocus
+                  className="user-input"
+                  onChange={handleInputChange}
+                  onKeyDown={checkUserScrollAndTab}
+                  value={userInput}
+                />
               </form>
             </div>
             <div />
           </div>
         </div>
       </div>
+      <div className="help-container">
+        <div className={hoveringHelp ? "help-content" : "help-content-hidden"}>
+          <div className="help-title">need help?</div>
+          <ul>
+            <li className="help-text">
+              to list files, type "<span className="monospace">ls</span>"
+            </li>
+            <li className="help-text">
+              items in <b>bold</b> are folders
+            </li>
+            <li className="help-text">
+              to see contents of folders, type "
+              <span className="monospace">
+                cd <i>file_name</i>
+              </span>{" "}
+              "
+            </li>
+          </ul>
+        </div>
+        <div
+          className={theme == "dark" ? "help-button-dark" : "help-button"}
+          onMouseEnter={hoverHelpOn}
+          onMouseLeave={hoverHelpOff}
+        >
+          ?
+        </div>
+      </div>
     </div>
+  )
 }
 
 export default App
