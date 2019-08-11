@@ -42,7 +42,7 @@ export const rootFolder = folder("root", [
   folder("links", [
     link("github", "https://github.com/nicolespicymayoo"),
     link("linkedin", "https://www.linkedin.com/in/nicolemayo/"),
-    link("resume", "https://drive.google.com/file/d/19k1Bd7jmtOxryCPvO4J0gv4jzqtAoEbh/view?usp=sharing"),
+    link("resume", "https://docs.google.com/document/d/18XCQXKdznDblhhaCx28X90pJGHRPXu1UYd73egkSJLE/edit"),
     link("twitter", "https://twitter.com/spicyasianmayo?lang=en")
   ]),
   file("email", "hellonicolemayo@gmail.com")
